@@ -25,7 +25,7 @@ eval("var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/run
   \**************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("var Handlebars = __webpack_require__(/*! ../node_modules/handlebars/runtime.js */ \"./node_modules/handlebars/runtime.js\");\nfunction __default(obj) { return obj && (obj.__esModule ? obj[\"default\"] : obj); }\nmodule.exports = (Handlebars[\"default\"] || Handlebars).template({\"compiler\":[8,\">= 4.3.0\"],\"main\":function(container,depth0,helpers,partials,data) {\n    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {\n        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {\n          return parent[propertyName];\n        }\n        return undefined\n    };\n\n  return ((stack1 = container.invokePartial(__webpack_require__(/*! ./partials/card.hbs */ \"./src/partials/card.hbs\"),depth0,{\"name\":\"card\",\"data\":data,\"helpers\":helpers,\"partials\":partials,\"decorators\":container.decorators})) != null ? stack1 : \"\")\n    + \"\\n<p>build by \"\n    + container.escapeExpression(__default(__webpack_require__(/*! ./helpers/upperCase.js */ \"./src/helpers/upperCase.js\")).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,\"name\") : depth0),{\"name\":\"upperCase\",\"hash\":{},\"data\":data,\"loc\":{\"start\":{\"line\":3,\"column\":12},\"end\":{\"line\":3,\"column\":30}}}))\n    + \"</p>\";\n},\"usePartial\":true,\"useData\":true});\n\n//# sourceURL=webpack://handlebars-project-template/./src/template.hbs?");
+eval("var Handlebars = __webpack_require__(/*! ../node_modules/handlebars/runtime.js */ \"./node_modules/handlebars/runtime.js\");\nfunction __default(obj) { return obj && (obj.__esModule ? obj[\"default\"] : obj); }\nmodule.exports = (Handlebars[\"default\"] || Handlebars).template({\"compiler\":[8,\">= 4.3.0\"],\"main\":function(container,depth0,helpers,partials,data) {\n    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {\n        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {\n          return parent[propertyName];\n        }\n        return undefined\n    };\n\n  return ((stack1 = container.invokePartial(__webpack_require__(/*! ./partials/card.hbs */ \"./src/partials/card.hbs\"),depth0,{\"name\":\"card\",\"data\":data,\"helpers\":helpers,\"partials\":partials,\"decorators\":container.decorators})) != null ? stack1 : \"\")\n    + \"\\n<img src=\\\"\" + __webpack_require__(/*! ./images/test.png */ \"./src/images/test.png\") + \"\\\" alt=\\\"\\\">\\n\\n<p>build by \"\n    + container.escapeExpression(__default(__webpack_require__(/*! ./helpers/upperCase.js */ \"./src/helpers/upperCase.js\")).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,\"name\") : depth0),{\"name\":\"upperCase\",\"hash\":{},\"data\":data,\"loc\":{\"start\":{\"line\":5,\"column\":12},\"end\":{\"line\":5,\"column\":30}}}))\n    + \"</p>\";\n},\"usePartial\":true,\"useData\":true});\n\n//# sourceURL=webpack://handlebars-project-template/./src/template.hbs?");
 
 /***/ }),
 
@@ -288,6 +288,17 @@ eval("module.exports = (str) => str.toUpperCase()\n\n//# sourceURL=webpack://han
 
 eval("const template = __webpack_require__(/*! ./template.hbs */ \"./src/template.hbs\")\n\nconst hbsHtml = template({\n  data: 'my input data',\n  name: 'link'\n})\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  const root = document.querySelector('#root')\n  root.innerHTML = hbsHtml\n})\n\n//# sourceURL=webpack://handlebars-project-template/./src/index.js?");
 
+/***/ }),
+
+/***/ "./src/images/test.png":
+/*!*****************************!*\
+  !*** ./src/images/test.png ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("module.exports = __webpack_require__.p + \"images/2f907c74fecee166e696.png\";\n\n//# sourceURL=webpack://handlebars-project-template/./src/images/test.png?");
+
 /***/ })
 
 /******/ 	});
@@ -327,6 +338,26 @@ eval("const template = __webpack_require__(/*! ./template.hbs */ \"./src/templat
 /******/ 				if (typeof window === 'object') return window;
 /******/ 			}
 /******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/

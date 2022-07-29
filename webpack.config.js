@@ -6,7 +6,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    clean: true
+    clean: true,
+    assetModuleFilename: 'images/[hash][ext][query]'
   },
   module: {
     rules: [
@@ -15,10 +16,15 @@ module.exports = {
         use: {
           loader: 'handlebars-loader',
           options: {
+            inlineRequires: "/images/",
             helperDirs: path.resolve(__dirname, 'src/helpers'),
             partialDirs: path.resolve(__dirname, 'src/partials')
           }
         }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource"
       }
     ]
   },
