@@ -8,7 +8,7 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: 'images/[hash][ext][query]'
+    publicPath: './'
   },
   module: {
     rules: [
@@ -22,7 +22,7 @@ const config: Configuration = {
         use: {
           loader: 'handlebars-loader',
           options: {
-            inlineRequires: '/images/',
+            inlineRequires: /@/,
             // helpers can only refer to .js file, so its .ts file should be compile before using
             helperDirs: path.resolve(__dirname, 'src/helpers/dist'),
             precompileOptions: {
@@ -33,8 +33,11 @@ const config: Configuration = {
         }
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource'
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]?[contenthash:8]'
+        }
       }
     ]
   },
