@@ -1,9 +1,10 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import path from 'path'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { Configuration } from 'webpack'
 
-module.exports = {
+const config: Configuration = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
@@ -11,6 +12,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.hbs$/,
         use: {
@@ -39,3 +45,5 @@ module.exports = {
     })
   ]
 }
+
+export default config
