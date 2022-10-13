@@ -4,7 +4,7 @@ import { Configuration } from 'webpack'
 
 const config: Configuration = {
   mode: 'development',
-  entry: {index: './src/pages/index/index.ts'},
+  entry: { index: './src/pages/index/index.ts' },
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
@@ -22,11 +22,11 @@ const config: Configuration = {
         use: {
           loader: 'handlebars-loader',
           options: {
-            inlineRequires: "/images/",
+            inlineRequires: '/images/',
             // helpers can only refer to .js file, so its .ts file should be compile before using
             helperDirs: path.resolve(__dirname, 'src/helpers/dist'),
             precompileOptions: {
-              knownHelpersOnly: false,
+              knownHelpersOnly: false
             },
             partialDirs: path.resolve(__dirname, 'src/partials')
           }
@@ -34,7 +34,7 @@ const config: Configuration = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource"
+        type: 'asset/resource'
       }
     ]
   },
