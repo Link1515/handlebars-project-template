@@ -7,20 +7,34 @@ interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration
 }
 
-const config: Configuration = {
+export const webpackConfigCommon: Configuration = {
   mode: 'development',
+  stats: 'errors-only',
   entry: {
     index: './src/pages/index/index.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
+    filename: 'js/[name].js?[contenthash:8]',
     clean: true
-    // publicPath: './'
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendor',
+          chunks: 'all',
+          enforce: true,
+          priority: 10
+        }
+      }
+    }
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
       },
@@ -57,17 +71,8 @@ const config: Configuration = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/pages/index/index.hbs',
+      minify: false,
       chunks: ['index']
     })
-  ],
-  devtool: 'source-map',
-  stats: 'errors-only',
-  devServer: {
-    port: 3000,
-    hot: true,
-    compress: false,
-    historyApiFallback: true
-  }
+  ]
 }
-
-export default config
