@@ -1,1 +1,1 @@
-import './template.hbs'
+import './index.hbs'
