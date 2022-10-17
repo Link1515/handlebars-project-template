@@ -2,17 +2,22 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { Configuration as WebpackConfiguration } from 'webpack'
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server'
+import { pages } from './pages.config'
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration
 }
 
+const entry: Configuration['entry'] = {}
+
+pages.forEach(page => {
+  entry[page.name] = `./src/entries/${page.name}.ts`
+})
+
 export const webpackConfigCommon: Configuration = {
   mode: 'development',
   stats: 'errors-only',
-  entry: {
-    index: './src/pages/index/index.ts'
-  },
+  entry,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js?[contenthash:8]',
@@ -69,10 +74,11 @@ export const webpackConfigCommon: Configuration = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/pages/index/index.hbs',
-      minify: false,
-      chunks: ['index']
-    })
+    ...pages.map(page => new HtmlWebpackPlugin({
+      template: `./src/pages/${page.name}/index.hbs`,
+      chunks: [page.name],
+      filename: `${page.name}.html`,
+      minify: false
+    }))
   ]
 }
