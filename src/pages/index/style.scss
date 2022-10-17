@@ -1,7 +1,13 @@
+@import '@/style/main';
+
 body {
   background-color: #aaa;
 }
 
 .ppp {
   background-color: #fa0;
+
+  @include bp(lg) {
+    background-color: #faa;
+  }
 }
