@@ -7,12 +7,33 @@ interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration
 }
 
+/**
+ * config pages here
+ */
+const PAGES_SRC_PATH = './src/pages'
+interface Page {
+  name: string
+}
+
+const pages: Page[] = [
+  {
+    name: 'index'
+  },
+  {
+    name: 'p2'
+  }
+]
+
+const entry: Configuration['entry'] = {}
+
+pages.forEach(page => {
+  entry[page.name] = `${PAGES_SRC_PATH}/${page.name}/index.ts`
+})
+
 export const webpackConfigCommon: Configuration = {
   mode: 'development',
   stats: 'errors-only',
-  entry: {
-    index: './src/pages/index/index.ts'
-  },
+  entry,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js?[contenthash:8]',
@@ -69,10 +90,11 @@ export const webpackConfigCommon: Configuration = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/pages/index/index.hbs',
-      minify: false,
-      chunks: ['index']
-    })
+    ...pages.map(page => new HtmlWebpackPlugin({
+      template: `${PAGES_SRC_PATH}/${page.name}/index.hbs`,
+      chunks: [page.name],
+      filename: `${page.name}.html`,
+      minify: false
+    }))
   ]
 }
