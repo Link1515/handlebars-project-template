@@ -2,32 +2,16 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { Configuration as WebpackConfiguration } from 'webpack'
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server'
+import { pages } from './pages.config'
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration
 }
 
-/**
- * config pages here
- */
-const PAGES_SRC_PATH = './src/pages'
-interface Page {
-  name: string
-}
-
-const pages: Page[] = [
-  {
-    name: 'index'
-  },
-  {
-    name: 'p2'
-  }
-]
-
 const entry: Configuration['entry'] = {}
 
 pages.forEach(page => {
-  entry[page.name] = `${PAGES_SRC_PATH}/${page.name}/index.ts`
+  entry[page.name] = `./src/entries/${page.name}.ts`
 })
 
 export const webpackConfigCommon: Configuration = {
@@ -91,7 +75,7 @@ export const webpackConfigCommon: Configuration = {
   },
   plugins: [
     ...pages.map(page => new HtmlWebpackPlugin({
-      template: `${PAGES_SRC_PATH}/${page.name}/index.hbs`,
+      template: `./src/pages/${page.name}/index.hbs`,
       chunks: [page.name],
       filename: `${page.name}.html`,
       minify: false

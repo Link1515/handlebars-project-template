@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prebuild": "rimraf src/helpers/dist/* && tsc -p tsconfig.buildHelper.json",
+    "prebuild": "npm run buildEntry && npm run cleanHelperDir && npm run buildHelper",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.ts",
-    "dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.dev.ts"
+    "predev": "npm run buildEntry && npm run cleanHelperDir && npm run buildHelper",
+    "dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.dev.ts",
+    "buildEntry": "ts-node ./buildEntry.ts",
+    "cleanHelperDir": "rimraf src/helpers/dist/*",
+    "buildHelper": "tsc -p tsconfig.buildHelper.json"
   },
   "keywords": [],
   "author": "",
