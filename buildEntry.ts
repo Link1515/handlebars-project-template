@@ -6,10 +6,12 @@ import fs from 'fs'
 import { pages } from './pages.config'
 
 const importData = (pageName: string): string => (`
+import '@/pages/${pageName}/index.ts'
 import '@/pages/${pageName}/style.scss'
 
 if (process.env.NODE_ENV === 'development') {
   require('@/pages/${pageName}/index.hbs')
+  require('@/partials/registerHotReload.ts')
 }
 `)
 
