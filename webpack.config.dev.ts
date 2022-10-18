@@ -5,7 +5,7 @@ const webpackConfigDev = merge(webpackConfigCommon, {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
-    port: 3000,
+    port: 3001,
     hot: true,
     compress: false,
     historyApiFallback: true
