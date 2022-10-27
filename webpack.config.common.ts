@@ -68,7 +68,7 @@ export const webpackConfigCommon: Configuration = {
     ]
   },
   resolve: {
-    extensions: ['ts', 'js'],
+    extensions: ['.ts', '.js', '.json', '.wasm'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@public': path.resolve(__dirname, 'public')
